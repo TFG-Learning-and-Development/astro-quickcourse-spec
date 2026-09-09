@@ -47,6 +47,18 @@ font-size: 0.875rem;  line-height: 1.5;
 
 dialog::backdrop {  background: rgba(15, 23, 42, 0.4);}
 
+/* Production courses begin on an open canvas; sections introduce surfaces deliberately. */
+:root {
+  --qc-content-gutter: clamp(1rem, 4vw, 3rem);
+  --qc-section-space: clamp(4.5rem, 9vw, 8rem);
+  background: #ffffff;
+}
+
+body {
+  overflow-x: clip;
+  background: #ffffff;
+}
+
 @media (prefers-reduced-motion: reduce) {
 html {    scroll-behavior: auto;  }
 

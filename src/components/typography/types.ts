@@ -27,6 +27,7 @@ export type TextWeight = "light" | "regular" | "medium" | "semibold" | "bold" | 
 export type TextTone = "default" | "muted" | "strong" | "accent" | "primary" | "secondary" | "inverse" | "success" | "warning" | "error";
 export type TextSurface = "none" | "default" | "muted" | "primary" | "secondary" | "accent" | "dark" | "light" | "success" | "warning" | "error";
 export type TextSpacing = "compact" | "standard" | "spacious";
+export type TextBleed = "none" | "viewport";
 export type TextLayoutKind = "reading-narrow" | "reading-standard" | "editorial-wide" | "statement" | "two-equal" | "two-main" | "two-aside" | "three" | "split" | "pull-quote" | "band" | "grid" | "steps";
 
 export type TextElement = "div" | "p" | "span" | "section" | "article" | "aside" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

@@ -3256,3 +3256,104 @@ grid-column: 1 / -1;
 grid-column: 1 / -1;
 }
 }
+
+/* Section fields are open by default; borders remain for controls and comparisons. */
+.showcase-hero,
+.showcase-hero-split,
+.showcase-minimal-hero,
+.showcase-hero-floating,
+.showcase-hero-objectives,
+.showcase-hero-scenario {
+border: 0;  border-radius: 0;  background: transparent;
+}
+
+.showcase-hero {
+min-height: clamp(28rem, 52vw, 42rem);
+}
+
+.showcase-hero-split,
+.showcase-hero-floating,
+.showcase-hero-objectives,
+.showcase-hero-scenario,
+.qc-key-message {
+border-radius: 0;
+}
+
+.showcase-hero-split,
+.showcase-hero-floating,
+.qc-key-message {
+overflow: clip;
+}
+
+.qc-column-block {
+border: 0;  border-top: 2px solid var(--qc-type-rule);  border-radius: 0;  background: transparent;  padding: 1.5rem 0 0;
+}
+
+.qc-media-frame img,
+.qc-key-message > img,
+.qc-cta__image,
+.qc-section-divider img {
+border-radius: 0;
+}
+
+.qc-key-message {
+min-height: clamp(18rem, 34vw, 28rem);  background: var(--qc-type-surface-muted);
+}
+
+.qc-text-layout--surface-none {
+--qc-text-layout-surface: transparent;
+}
+
+.qc-text-layout--surface-default {
+--qc-text-layout-surface: #ffffff;
+}
+
+.qc-text-layout--surface-muted {
+--qc-text-layout-surface: var(--qc-type-surface-muted);
+}
+
+.qc-text-layout--surface-primary {
+--qc-text-layout-surface: var(--showcase-ci-plum);
+}
+
+.qc-text-layout--surface-secondary {
+--qc-text-layout-surface: var(--showcase-ci-steel);
+}
+
+.qc-text-layout--surface-accent {
+--qc-text-layout-surface: var(--qc-type-surface-accent);
+}
+
+.qc-text-layout--surface-dark {
+--qc-text-layout-surface: #111827;
+}
+
+.qc-text-layout--surface-light {
+--qc-text-layout-surface: var(--qc-type-surface-light);
+}
+
+.qc-text-layout--surface-success {
+--qc-text-layout-surface: #dcefe0;
+}
+
+.qc-text-layout--surface-warning {
+--qc-text-layout-surface: #fff0d7;
+}
+
+.qc-text-layout--surface-error {
+--qc-text-layout-surface: #fee2e2;
+}
+
+.qc-text-layout--bleed-viewport {
+position: relative;  isolation: isolate;  max-width: var(--qc-type-measure-wide);  margin-inline: auto;  border-radius: 0;  padding-block: clamp(3.5rem, 8vw, 7rem);  padding-inline: 0;
+}
+
+.qc-text-layout--bleed-viewport:not(.qc-text-layout--surface-none)::before {
+position: absolute;  z-index: -1;  inset-block: 0;  left: 50%;  width: 100vw;  transform: translateX(-50%);  background: var(--qc-text-layout-surface);  content: "";
+}
+
+@media (max-width: 767px) {
+.qc-text-layout--bleed-viewport {
+padding-block: clamp(3rem, 14vw, 4.5rem);
+}
+}

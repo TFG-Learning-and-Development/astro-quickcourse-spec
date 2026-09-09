@@ -1439,3 +1439,52 @@ max-width: 70ch;  margin: 0;  color: var(--qc-type-muted);
 margin-top: 3.5rem;    padding-top: 1.75rem;
 }
 }
+
+/* Keep review metadata distinct without introducing a second visual shell around learner specimens. */
+.showcase-main {
+padding-top: clamp(2.5rem, 6vw, 5rem) !important;
+}
+
+.showcase-catalogue-section {
+border-top-width: 1px;  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+.showcase-catalogue-section:nth-child(even) {
+margin-inline: 0;  padding-inline: 0;  background: transparent;
+}
+
+.showcase-example {
+gap: clamp(1.5rem, 3vw, 2.25rem);  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.showcase-example__header {
+border-left: 2px solid #d29f91;  padding-left: 1rem;
+}
+
+.showcase-example__preview[data-showcase-specimen] {
+border-top: 1px solid #e5e7eb;  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.showcase-course-composition {
+display: grid;  gap: 0;  border-block: 1px solid #d1d5db;
+}
+
+.showcase-course-composition > .showcase-hero {
+width: 100vw;  margin-inline: calc(50% - 50vw);
+}
+
+.showcase-course-composition__inner {
+width: min(calc(100% - (var(--qc-content-gutter) * 2)), var(--qc-type-measure-wide));  margin-inline: auto;  padding-block: var(--qc-section-space);
+}
+
+.showcase-course-composition__inner--interactive {
+padding-top: clamp(2.5rem, 6vw, 5rem);
+}
+
+.showcase-course-composition__inner .qc-text-layout--split {
+max-width: none;
+}
+
+.showcase-course-composition__inner .qc-media-frame img {
+min-height: 20rem;
+}

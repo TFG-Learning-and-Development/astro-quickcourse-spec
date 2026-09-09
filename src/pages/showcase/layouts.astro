@@ -8,6 +8,7 @@ import ShowcaseEmptyState from "../../components/showcase/ShowcaseEmptyState.ast
 import MinimalHeroPreview from "../../components/showcase/MinimalHeroPreview.astro";
 import FloatingCardHero from "../../components/layout/heroes/FloatingCardHero.astro";
 import HeroDisplayOptions from "../../components/layout/heroes/HeroDisplayOptions.astro";
+import ImageOverlayHero from "../../components/layout/heroes/ImageOverlayHero.astro";
 import ImageOverlayHeroPreview from "../../components/showcase/ImageOverlayHeroPreview.astro";
 import LearningObjectivesHero from "../../components/layout/heroes/LearningObjectivesHero.astro";
 import ScenarioOpenerHero from "../../components/layout/heroes/ScenarioOpenerHero.astro";
@@ -25,6 +26,10 @@ import QuoteKeyMessage from "../../components/layouts/visual/QuoteKeyMessage.ast
 import CallToActionSection from "../../components/layouts/opener-closer/CallToActionSection.astro";
 import SectionDivider from "../../components/layouts/opener-closer/SectionDivider.astro";
 import SummarySection from "../../components/layouts/opener-closer/SummarySection.astro";
+import Accordion from "../../components/interactions/display/Accordion.astro";
+import TextLayout from "../../components/typography/TextLayout.astro";
+import TypeText from "../../components/typography/TypeText.astro";
+import QuoteBlock from "../../components/typography/QuoteBlock.astro";
 import { layoutAnchors } from "../../data/showcase";
 import { getShowcaseItem } from "../../data/showcase-registry";
 
@@ -84,6 +89,76 @@ const productExamples = [
 
   <div class="showcase-section-stack mt-10" data-showcase-collection>
     <ShowcaseEmptyState />
+
+    <ShowcaseSection id="open-composition" title="Open course composition" description="A representative course sequence built from existing Kit components, with page-level fields and contained interactions used selectively.">
+      <ShowcaseExample id="open-course-composition" title="Editorial course sequence" purpose="Shows how open copy, full-width fields, media and one contained interaction can create a deliberate learner rhythm." status="draft">
+        <div class="showcase-course-composition">
+          <ImageOverlayHero
+            previewId="open-course-composition-hero"
+            headingId="open-course-composition-hero-heading"
+            eyebrow="Customer conversations"
+            title="Create a clear next step."
+            description="A practical course opening where the image supplies context and the copy stays direct."
+            imageSrc={neutralImage}
+            imageAlt="A participant reviewing materials at a desk."
+            titleEmphasis="display"
+            action={{ href: "#open-course-composition-accordion", label: "Begin" }}
+          />
+
+          <div class="showcase-course-composition__inner">
+            <TextLayout as="section" layout="split" surface="none" spacing="spacious">
+              <div class="qc-text-layout__prose">
+                <TypeText as="p" role="eyebrow" weight="semibold">Start with the need</TypeText>
+                <TypeText as="h4" role="heading-xl" weight="bold">The clearest guidance leaves room to think.</TypeText>
+                <TypeText as="p" role="body">Open space and a readable measure let the explanation lead. The image supports the learning point without trapping either element inside a decorative card.</TypeText>
+              </div>
+              <figure class="qc-media-frame">
+                <img src={neutralImage} alt="A participant reviewing notes beside a laptop." loading="lazy" />
+                <figcaption>Use a wide image only where it makes the subject easier to understand.</figcaption>
+              </figure>
+            </TextLayout>
+          </div>
+
+          <TextLayout as="section" layout="statement" surface="primary" spacing="spacious" bleed="viewport">
+            <TypeText as="p" role="statement" align="center" tone="inverse" weight="bold">Name the action. Then make it easy to take.</TypeText>
+            <TypeText as="p" role="body" align="center" tone="muted">A section field creates emphasis without making a separate card around the message.</TypeText>
+          </TextLayout>
+
+          <div class="showcase-course-composition__inner">
+            <TextImageSplit
+              eyebrow="A useful response"
+              heading="Pair a focused question with a visible next step"
+              description="Text and image can sit in a larger composition while the reading order stays stable on smaller screens."
+              headingLevel={4}
+              imageSrc={neutralImage}
+              imageAlt="A participant reviewing course materials at a desk."
+              imageCaption="The image reaches the section edge without another surrounding surface."
+            >
+              <p>Before explaining a process, check which outcome matters most to the person in front of you. One well-chosen question can make the next action much clearer.</p>
+            </TextImageSplit>
+          </div>
+
+          <TextLayout as="section" layout="pull-quote" surface="light" spacing="spacious" bleed="viewport">
+            <QuoteBlock quote="Good guidance should feel like a route forward, not another thing to decode." citation="Illustrative course message" variant="pull" family="serif" />
+          </TextLayout>
+
+          <div class="showcase-course-composition__inner showcase-course-composition__inner--interactive" id="open-course-composition-accordion">
+            <TypeText as="p" role="eyebrow" weight="semibold">Explore the detail</TypeText>
+            <TypeText as="h4" role="heading-lg" weight="bold">Keep interaction boundaries where they earn their place.</TypeText>
+            <Accordion
+              id="open-course-composition-accordion-control"
+              presentation="minimal"
+              surface="neutral"
+              items={[
+                { id: "listen", title: "Listen for the outcome", content: "Let the customer explain the result they need before selecting a route forward." },
+                { id: "clarify", title: "Ask one focused question", content: "Use the missing detail to choose the right next step, rather than listing every possible option." },
+                { id: "confirm", title: "Confirm who owns the action", content: "Close by naming the action, timing and owner so the learner can see what happens next." },
+              ]}
+            />
+          </div>
+        </div>
+      </ShowcaseExample>
+    </ShowcaseSection>
 
     {sectionVisible("heroes") && <ShowcaseSection id="heroes" title="Heroes" description="Existing module and course opener variants.">
       <div class="showcase-example-stack">

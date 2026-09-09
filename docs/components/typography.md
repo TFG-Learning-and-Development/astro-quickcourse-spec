@@ -29,7 +29,7 @@ Expressive treatments remain opt-in. Display roles, editorial serif, pull quotes
 The system deliberately uses a small set of typed Astro components.
 
 - `TypeText.astro`: semantic type role, alignment, reading measure, family, weight, tone and italic treatment.
-- `TextLayout.astro`: controlled reading, statement, column, aside, band and grid layouts with semantic surfaces and spacing.
+- `TextLayout.astro`: controlled reading, statement, column, aside, band and grid layouts with semantic surfaces, spacing and an optional viewport-bleed section field.
 - `QuoteBlock.astro`: semantic `blockquote` and `cite` treatments.
 - `StatisticBlock.astro`: semantic definition-list values and labels.
 - `DefinitionList.astro`: semantic term-definition pairs.
@@ -87,6 +87,8 @@ Use light weight only for large Display text. Normal Body copy must remain regul
 - Pull quote aside: non-essential editorial emphasis alongside a longer explanation.
 
 The default model is a Wide section container with Standard-measure reading content inside it. Long-form or detailed content can use Narrow measure; short headings and Leads can use more of the outer container. Columns collapse to one logical DOM order on narrow screens. Do not use right-aligned paragraphs, justified text, three columns for long copy or two columns for two long articles. Prefer one readable column over forcing text across the full width.
+
+When a section-level background needs to reach the viewport edges, use `TextLayout` with `bleed="viewport"` and a semantic non-`none` surface. Its copy remains inside the governed layout measure while the colour field creates the broader page rhythm. Use this sparingly for genuine transitions, key messages and major section openings; ordinary explanations stay on the open course canvas.
 
 ## Vertical Rhythm
 
