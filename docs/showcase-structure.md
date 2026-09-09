@@ -12,6 +12,7 @@ Production Quick Courses remain single-page experiences. The Showcase routes are
 - `/showcase/layouts`: heroes and reusable layout patterns.
 - `/showcase/display-interactions`: callouts, accordions and future exploratory display patterns.
 - `/showcase/assessment-interactions`: knowledge checks, quizzes and learner-response patterns.
+- `/showcase/patterns`: Concept composition recipes that combine components, semantic content and instructional flow.
 - `/showcase/multimedia`: video, audio, image and embed patterns.
 - `/showcase/typography`: type stack and readable content standards.
 - `/showcase/icons`: controlled semantic icon vocabulary and usage guidance.
@@ -74,6 +75,8 @@ The Icons Showcase is a static system reference, not an icon picker. It shows co
 ## Future Recipes
 
 Complete course recipes can be added later under routes such as `/showcase/recipes/product-knowledge-course`. Recipes should demonstrate how approved components combine into one complete single-page Quick Course; they should not convert production courses into multi-page experiences.
+
+The Patterns page is the governed composition layer below full recipes. It shows reusable section and activity compositions, not complete course templates or production rendering schemas.
 
 ## Boilerplate Boundary
 

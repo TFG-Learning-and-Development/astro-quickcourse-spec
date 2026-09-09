@@ -4,6 +4,8 @@
 
 The Showcase, Workboard, lifecycle/status UI, preview controls, proposal cards, specimen copy and review tooling stay in this repository as Kit-only workbench code. They are not learner-facing runtime dependencies.
 
+Pattern catalogue data and Pattern specimen pages are part of this Kit workbench boundary. They document composition guidance for review and do not create a production Pattern API, rendering engine or release-manifest export.
+
 ## Styles
 
 - `src/styles/foundation.css` contains the shared base layer used by both learner-facing components and the Showcase.

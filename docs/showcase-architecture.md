@@ -18,6 +18,7 @@ The Showcase uses multiple category pages for review, governance and maintenance
 - Page-level Showcase navigation is handled by the top navbar using category routes. In production Quick Courses, this navigation pattern should target topics or anchors inside the same course page.
 - The Layouts category also provides same-page section anchors for direct review links.
 - Showcase data lives in `src/data/` until a fuller content strategy is approved.
+- Pattern definitions live in `src/data/patterns.ts` as AI-readable composition guidance. They are independent of the component registry and are not a production rendering schema.
 - Component documentation lives in `docs/components/`.
 - SCORM packaging is retained in `scripts/build-scorm.mjs`.
 - Typography uses native system text fonts; Material Symbols Sharp is the standard icon family, rendered locally through the controlled `QuickCourseIcon` system for new course work.

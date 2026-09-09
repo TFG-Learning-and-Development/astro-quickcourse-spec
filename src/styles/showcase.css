@@ -260,6 +260,170 @@ align-self: end;  color: #64748b;  font-size: 0.85rem;
 display: grid;  gap: 3rem;  margin-top: 3rem;
 }
 
+.pattern-page-tools {
+display: flex;  flex-wrap: wrap;  align-items: center;  justify-content: space-between;  gap: 1rem;  margin-top: 1.5rem;
+}
+
+.pattern-specimen {
+display: grid;  gap: 1.25rem;
+}
+
+.pattern-meta {
+display: grid;  gap: 0.35rem;  max-width: 74ch;  border-left: 4px solid var(--showcase-ci-plum);  padding-left: 1rem;
+}
+
+.pattern-meta p {
+margin: 0;  color: #475569;  line-height: 1.55;
+}
+
+.pattern-meta p:first-child {
+color: var(--showcase-ci-plum);  font-size: 0.82rem;  font-weight: 800;  letter-spacing: 0;  text-transform: uppercase;
+}
+
+.pattern-opener {
+display: grid;  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.75fr);  align-items: stretch;  gap: 1rem;
+}
+
+.pattern-opener .showcase-minimal-hero,
+.pattern-opener__outcomes,
+.pattern-learning-arc,
+.pattern-two-paths,
+.pattern-scenario,
+.pattern-course-close {
+border: 1px solid #d8dee8;  border-radius: 0.5rem;  background: #ffffff;
+}
+
+.pattern-opener__outcomes {
+display: grid;  align-content: center;  gap: 0.85rem;  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.pattern-opener__outcomes h4,
+.pattern-learning-arc h4,
+.pattern-two-paths h4,
+.pattern-scenario h4,
+.pattern-course-close h4 {
+margin: 0;  color: #111827;  font-size: clamp(1.35rem, 2vw, 1.8rem);  line-height: 1.15;
+}
+
+.pattern-opener__outcomes ul {
+display: grid;  gap: 0.65rem;  margin: 0;  padding-left: 1.2rem;  color: #334155;
+}
+
+.pattern-opener__outcomes p,
+.pattern-learning-arc p,
+.pattern-two-paths p,
+.pattern-scenario p,
+.pattern-course-close p {
+margin: 0;  color: #475569;  line-height: 1.6;
+}
+
+.pattern-learning-arc {
+display: grid;  grid-template-columns: minmax(14rem, 0.9fr) minmax(18rem, 1.1fr);  gap: 1.25rem;  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.pattern-learning-arc__explain {
+display: grid;  align-content: start;  gap: 0.65rem;  padding-block: 0.4rem;
+}
+
+.pattern-date-example {
+display: grid;  gap: 0.75rem;  border-radius: 0.5rem;  background: #f8fafc;  padding: 1rem;
+}
+
+.pattern-date-example ol {
+display: grid;  grid-template-columns: repeat(3, minmax(0, 1fr));  gap: 0.65rem;  margin: 0;  padding: 0;  list-style: none;
+}
+
+.pattern-date-example li {
+display: grid;  gap: 0.35rem;  min-height: 5.5rem;  border: 1px solid #dbe3ee;  border-radius: 0.45rem;  background: #ffffff;  padding: 0.85rem;
+}
+
+.pattern-date-example span {
+color: #64748b;  font-size: 0.82rem;  line-height: 1.3;
+}
+
+.pattern-date-example strong {
+color: #111827;  font-size: 1.35rem;  line-height: 1.1;
+}
+
+.pattern-learning-arc .choice-question {
+grid-column: 1 / -1;
+}
+
+.pattern-two-paths,
+.pattern-scenario,
+.pattern-course-close {
+display: grid;  gap: 1rem;  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.pattern-two-paths__header {
+display: grid;  gap: 0.6rem;  max-width: 70ch;
+}
+
+.pattern-two-paths__grid {
+display: grid;  grid-template-columns: repeat(2, minmax(0, 1fr));  gap: 1rem;
+}
+
+.pattern-two-paths__grid article {
+display: grid;  align-content: start;  gap: 0.75rem;  border: 1px solid #d8dee8;  border-radius: 0.5rem;  background: #f8fafc;  padding: 1rem;
+}
+
+.pattern-two-paths__grid h5 {
+margin: 0;  color: #111827;  font-size: 1.05rem;  line-height: 1.2;
+}
+
+.pattern-two-paths__grid ol {
+display: grid;  gap: 0.55rem;  margin: 0;  padding-left: 1.25rem;  color: #334155;  line-height: 1.55;
+}
+
+.pattern-guidance-note {
+max-width: 72ch;  border-left: 4px solid #94a3b8;  background: #f8fafc;  padding: 0.85rem 1rem;
+}
+
+.pattern-scenario {
+background: #fffdf8;
+}
+
+.pattern-scenario__context {
+display: grid;  gap: 0.65rem;  max-width: 76ch;
+}
+
+.pattern-scenario blockquote {
+margin: 0.35rem 0 0;  border-left: 4px solid var(--showcase-ci-clay);  padding-left: 1rem;
+}
+
+.pattern-scenario blockquote p {
+color: #2f2924;  font-size: 1.08rem;
+}
+
+.pattern-scenario__questions {
+display: grid;  gap: 0.85rem;
+}
+
+.pattern-course-close {
+background: #fdf3e0;
+}
+
+.pattern-course-close > div:first-child {
+display: grid;  gap: 0.65rem;  max-width: 72ch;
+}
+
+.pattern-course-close .qc-definition-list {
+margin-top: 0.35rem;
+}
+
+@media (max-width: 780px) {
+.pattern-opener,
+.pattern-learning-arc,
+.pattern-two-paths__grid,
+.pattern-date-example ol {
+grid-template-columns: 1fr;
+}
+
+.pattern-page-tools {
+align-items: stretch;
+}
+}
+
 .kit-workboard-horizon {
 min-width: 0;
 }

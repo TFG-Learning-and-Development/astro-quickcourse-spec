@@ -25,6 +25,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
     description: "Knowledge checks and evaluative moments with learner responses.",
   },
   {
+    label: "Patterns",
+    slug: "patterns",
+    href: "/showcase/patterns",
+    description: "Governed composition recipes for turning components and semantic content into deliberate course experiences.",
+  },
+  {
     label: "Multimedia",
     slug: "multimedia",
     href: "/showcase/multimedia",

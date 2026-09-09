@@ -4,16 +4,22 @@ import ShowcasePageHeader from "../components/showcase/ShowcasePageHeader.astro"
 import { showcaseCategories } from "../data/showcase";
 import { getShowcaseItemsForView } from "../data/showcase-registry";
 import type { ShowcaseCategory as RegisteredShowcaseCategory } from "../data/showcase-registry";
+import { patterns } from "../data/patterns";
 
 const baseDescription =
   "Use this Showcase to review the building blocks for fast, single-page Quick Courses. In the Showcase, the navbar links open separate category pages to make review, governance and maintenance easier. In production Quick Courses, the same navigation pattern will link to topics and section anchors within the single course page.";
-const categoryCards = showcaseCategories.map((category) => ({
-  ...category,
-  developmentItemCount: getShowcaseItemsForView(category.slug as RegisteredShowcaseCategory, "development").length,
-  statuses: getShowcaseItemsForView(category.slug as RegisteredShowcaseCategory, "development")
-    .concat(getShowcaseItemsForView(category.slug as RegisteredShowcaseCategory, "approved"))
-    .map((item) => item.status),
-}));
+const categoryCards = showcaseCategories.map((category) => {
+  const isPatternCategory = category.slug === "patterns";
+  const developmentItems = getShowcaseItemsForView(category.slug as RegisteredShowcaseCategory, "development");
+  const approvedItems = getShowcaseItemsForView(category.slug as RegisteredShowcaseCategory, "approved");
+
+  return {
+    ...category,
+    developmentItemCount: developmentItems.length,
+    patternCount: isPatternCategory ? patterns.length : 0,
+    statuses: isPatternCategory ? patterns.map((pattern) => pattern.status) : developmentItems.concat(approvedItems).map((item) => item.status),
+  };
+});
 const visibleCountLabel = (count: number) => `${count} ${count === 1 ? "item" : "items"} in this view`;
 ---
 
@@ -39,7 +45,9 @@ const visibleCountLabel = (count: number) => `${count} ${count === 1 ? "item" : 
           <h2>{category.label}</h2>
           <p>{category.description}</p>
           <p class="showcase-category-card__mode-note" data-showcase-category-count>
-            {category.developmentItemCount > 0
+            {category.slug === "patterns"
+              ? `${category.patternCount} concept Patterns for review`
+              : category.developmentItemCount > 0
               ? visibleCountLabel(category.developmentItemCount)
               : "No components in this category have been approved yet."}
           </p>

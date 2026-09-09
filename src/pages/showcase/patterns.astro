@@ -1,0 +1,248 @@
+---
+import ShowcaseLayout from "../../layouts/ShowcaseLayout.astro";
+import ShowcasePageHeader from "../../components/showcase/ShowcasePageHeader.astro";
+import ShowcaseAnchorNav from "../../components/showcase/ShowcaseAnchorNav.astro";
+import ShowcaseSection from "../../components/showcase/ShowcaseSection.astro";
+import ShowcaseExample from "../../components/showcase/ShowcaseExample.astro";
+import ShowcaseEmptyState from "../../components/showcase/ShowcaseEmptyState.astro";
+import DetailModal from "../../components/interactions/display/DetailModal.astro";
+import ChoiceQuestion from "../../components/interactions/ChoiceQuestion.astro";
+import MinimalHero from "../../components/layout/heroes/MinimalHero.astro";
+import DefinitionList from "../../components/typography/DefinitionList.astro";
+import { patternStatusLabels, patterns } from "../../data/patterns";
+
+const anchors = patterns.map((pattern) => ({ label: pattern.name, href: `#${pattern.id}` }));
+const pattern = (id: string) => {
+  const item = patterns.find((candidate) => candidate.id === id);
+  if (!item) throw new Error(`Missing Pattern definition: ${id}`);
+  return item;
+};
+const opener = pattern("course-opener");
+const explainExampleCheck = pattern("explain-example-check");
+const compareTwoPaths = pattern("compare-two-paths");
+const scenarioPractice = pattern("scenario-practice");
+const courseClose = pattern("course-close");
+---
+
+<ShowcaseLayout
+  pageTitle="Patterns | Astro Quick Course Showcase"
+  description="Concept Pattern specimens for composing Quick Course components and semantic content into stronger learning experiences."
+  activeCategory="patterns"
+>
+  <ShowcasePageHeader
+    eyebrow="Concept layer"
+    title="Patterns"
+    description="Patterns are governed composition recipes. They are not production exports, page templates or a rendering engine; they show how components, semantic content, spacing and instructional flow can work together."
+  />
+
+  <div class="pattern-page-tools">
+    <ShowcaseAnchorNav items={anchors} />
+    <DetailModal
+      id="pattern-layer-guidance"
+      triggerLabel="Pattern guidance"
+      triggerIcon="information"
+      triggerVariant="secondary"
+      heading="How to review these Pattern specimens"
+    >
+      <ul class="di-dialog__list">
+        <li>Review the composition, not only the individual components inside it.</li>
+        <li>Check whether the Pattern creates clearer rhythm, grouping and hierarchy than a flat sequence of sections.</li>
+        <li>Treat these as Concept examples. They are not exported in the production Kit release.</li>
+      </ul>
+    </DetailModal>
+  </div>
+
+  <div class="showcase-section-stack mt-10" data-showcase-collection>
+    <ShowcaseEmptyState />
+
+    <ShowcaseSection
+      id="pattern-specimens"
+      title="Pattern specimens"
+      description="Each Concept specimen uses one representative content shape. The Pattern data records expected content, ingredients, accessibility considerations and alternatives."
+    >
+      <div class="showcase-example-stack">
+        <ShowcaseExample id={opener.id} title={opener.name} purpose={opener.purpose} status={opener.status}>
+          <div class="pattern-specimen pattern-opener-specimen">
+            <div class="pattern-meta">
+              <p>{patternStatusLabels[opener.status]}</p>
+              <p>{opener.visualRhythmIntent}</p>
+            </div>
+            <div class="pattern-opener">
+              <MinimalHero
+                headingId="course-opener-demo-heading"
+                headingLevel={4}
+                eyebrow="Course start"
+                title="Handle a customer handover with confidence"
+                summary="Learn how to collect the right context, choose the next action and explain the handover clearly."
+                alignment="left"
+                density="compact"
+                surface="light"
+              />
+              <section class="pattern-opener__outcomes" aria-labelledby="course-opener-outcomes">
+                <h4 id="course-opener-outcomes">You will practise</h4>
+                <ul>
+                  <li>Identify the information that changes the next step.</li>
+                  <li>Choose the most useful response for the customer.</li>
+                  <li>Explain the handover without overpromising.</li>
+                </ul>
+                <p>Start with the promise, then show the learner what they will apply.</p>
+              </section>
+            </div>
+          </div>
+        </ShowcaseExample>
+
+        <ShowcaseExample id={explainExampleCheck.id} title={explainExampleCheck.name} purpose={explainExampleCheck.purpose} status={explainExampleCheck.status}>
+          <div class="pattern-specimen pattern-sequence-specimen">
+            <div class="pattern-meta">
+              <p>{patternStatusLabels[explainExampleCheck.status]}</p>
+              <p>{explainExampleCheck.visualRhythmIntent}</p>
+            </div>
+            <section class="pattern-learning-arc" aria-labelledby="arc-heading">
+              <div class="pattern-learning-arc__explain">
+                <p class="qc-eyebrow">Explain</p>
+                <h4 id="arc-heading">Use the same day next month</h4>
+                <p>When a plan has monthly payments, the day of the month stays the same and only the month changes.</p>
+              </div>
+              <div class="pattern-date-example" aria-label="Worked example">
+                <p class="qc-eyebrow">Example</p>
+                <ol>
+                  <li><span>Purchase</span><strong>4 May</strong></li>
+                  <li><span>Second payment</span><strong>4 June</strong></li>
+                  <li><span>Final payment</span><strong>4 July</strong></li>
+                </ol>
+              </div>
+              <ChoiceQuestion
+                id="pattern-date-check"
+                eyebrow="Check"
+                title="Apply the pattern"
+                prompt="If the first payment is on the 12th of August, when is the final payment in a three-payment monthly plan?"
+                selectionMode="single"
+                submissionMode="check-answer"
+                attemptMode="retry"
+                lockOnCorrect
+                correctFeedback={{ title: "Correct", body: "The example pattern has been applied." }}
+                incorrectFeedback={{ title: "Try again", body: "Review the worked example, then keep the day of the month the same." }}
+                options={[
+                  { id: "sep-12", label: "12 September", isCorrect: false },
+                  { id: "oct-12", label: "12 October", isCorrect: true },
+                  { id: "aug-14", label: "14 August", isCorrect: false },
+                ]}
+              />
+            </section>
+          </div>
+        </ShowcaseExample>
+
+        <ShowcaseExample id={compareTwoPaths.id} title={compareTwoPaths.name} purpose={compareTwoPaths.purpose} status={compareTwoPaths.status}>
+          <div class="pattern-specimen pattern-compare-specimen">
+            <div class="pattern-meta">
+              <p>{patternStatusLabels[compareTwoPaths.status]}</p>
+              <p>{compareTwoPaths.visualRhythmIntent}</p>
+            </div>
+            <section class="pattern-two-paths" aria-labelledby="compare-paths-heading">
+              <div class="pattern-two-paths__header">
+                <p class="qc-eyebrow">Compare two paths</p>
+                <h4 id="compare-paths-heading">Choose the right handover route</h4>
+                <p>The learner needs to see both routes at once because the first decision changes the next steps.</p>
+              </div>
+              <div class="pattern-two-paths__grid">
+                <article>
+                  <h5>Customer still present</h5>
+                  <ol>
+                    <li>Confirm what the customer needs now.</li>
+                    <li>Check the account or order note.</li>
+                    <li>Explain the next action before leaving the till.</li>
+                  </ol>
+                </article>
+                <article>
+                  <h5>Customer has left</h5>
+                  <ol>
+                    <li>Record the outstanding question.</li>
+                    <li>Assign the follow-up owner.</li>
+                    <li>Send the customer one clear update path.</li>
+                  </ol>
+                </article>
+              </div>
+              <p class="pattern-guidance-note">Shared guidance: choose the path based on where the customer is now, not on which process feels faster.</p>
+            </section>
+          </div>
+        </ShowcaseExample>
+
+        <ShowcaseExample id={scenarioPractice.id} title={scenarioPractice.name} purpose={scenarioPractice.purpose} status={scenarioPractice.status}>
+          <div class="pattern-specimen pattern-scenario-specimen">
+            <div class="pattern-meta">
+              <p>{patternStatusLabels[scenarioPractice.status]}</p>
+              <p>{scenarioPractice.visualRhythmIntent}</p>
+            </div>
+            <section class="pattern-scenario" aria-labelledby="scenario-practice-heading">
+              <div class="pattern-scenario__context">
+                <p class="qc-eyebrow">Scenario practice</p>
+                <h4 id="scenario-practice-heading">A customer asks three questions at once</h4>
+                <p>You are helping at the service desk. A customer has a delivery delay, a payment concern and a question about who will follow up.</p>
+                <blockquote>
+                  <p>I need to know what happens next, whether I will be charged again and who is actually handling this.</p>
+                </blockquote>
+              </div>
+              <div class="pattern-scenario__questions" aria-label="Scenario decisions">
+                <ChoiceQuestion
+                  id="pattern-scenario-check-1"
+                  eyebrow="Decision 1"
+                  title="First response"
+                  prompt="What should you do first?"
+                  selectionMode="single"
+                  submissionMode="check-answer"
+                  correctFeedback={{ title: "Correct", body: "This keeps the scenario grounded before choosing a route." }}
+                  incorrectFeedback={{ title: "Try again", body: "Start by establishing the facts that affect the next step." }}
+                  options={[
+                    { id: "promise", label: "Promise the issue will be solved today.", isCorrect: false },
+                    { id: "confirm", label: "Confirm the order details and the customer's main concern.", isCorrect: true },
+                    { id: "handoff", label: "Send the customer to another desk immediately.", isCorrect: false },
+                  ]}
+                />
+                <ChoiceQuestion
+                  id="pattern-scenario-check-2"
+                  eyebrow="Decision 2"
+                  title="Payment concern"
+                  prompt="Which response best handles the payment concern?"
+                  selectionMode="single"
+                  submissionMode="check-answer"
+                  correctFeedback={{ title: "Correct", body: "This gives a clear next check without inventing an answer." }}
+                  incorrectFeedback={{ title: "Try again", body: "Choose the response that is specific but does not overclaim." }}
+                  options={[
+                    { id: "guess", label: "It probably will not charge again.", isCorrect: false },
+                    { id: "check", label: "I will check the payment status before confirming that.", isCorrect: true },
+                    { id: "ignore", label: "The delivery question is more important than payment.", isCorrect: false },
+                  ]}
+                />
+              </div>
+              <p class="pattern-guidance-note">The scenario wrapper gives repeated questions one shared identity without adding scoring or a new quiz engine.</p>
+            </section>
+          </div>
+        </ShowcaseExample>
+
+        <ShowcaseExample id={courseClose.id} title={courseClose.name} purpose={courseClose.purpose} status={courseClose.status}>
+          <div class="pattern-specimen pattern-close-specimen">
+            <div class="pattern-meta">
+              <p>{patternStatusLabels[courseClose.status]}</p>
+              <p>{courseClose.visualRhythmIntent}</p>
+            </div>
+            <section class="pattern-course-close" aria-labelledby="course-close-heading">
+              <div>
+                <p class="qc-eyebrow">Course close</p>
+                <h4 id="course-close-heading">You are ready to use the handover routine</h4>
+                <p>The closing section should feel like the final learning beat, not a leftover information box.</p>
+              </div>
+              <DefinitionList
+                variant="grid"
+                items={[
+                  { term: "Remember", definition: "Start with the customer context before choosing a route." },
+                  { term: "Apply", definition: "Use the same handover structure when the next step is unclear." },
+                  { term: "Carry forward", definition: "A calm, specific explanation builds trust in the process." },
+                ]}
+              />
+            </section>
+          </div>
+        </ShowcaseExample>
+      </div>
+    </ShowcaseSection>
+  </div>
+</ShowcaseLayout>
