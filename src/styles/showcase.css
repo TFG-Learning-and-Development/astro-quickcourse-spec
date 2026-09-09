@@ -1465,26 +1465,26 @@ border-left: 2px solid #d29f91;  padding-left: 1rem;
 border-top: 1px solid #e5e7eb;  padding-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.showcase-course-composition {
-display: grid;  gap: 0;  border-block: 1px solid #d1d5db;
+.showcase-topbar {
+top: 0;  max-width: none;  background: #ffffff;
 }
 
-.showcase-course-composition > .showcase-hero {
-width: 100vw;  margin-inline: calc(50% - 50vw);
+.showcase-topbar__inner {
+width: min(100%, 84rem);  margin-inline: auto;  border: 0;  border-radius: 0;  background: transparent;  box-shadow: none;  backdrop-filter: none;  padding: 0.7rem var(--qc-content-gutter);
 }
 
-.showcase-course-composition__inner {
-width: min(calc(100% - (var(--qc-content-gutter) * 2)), var(--qc-type-measure-wide));  margin-inline: auto;  padding-block: var(--qc-section-space);
+.showcase-brand {
+flex: 0 0 auto;
 }
 
-.showcase-course-composition__inner--interactive {
-padding-top: clamp(2.5rem, 6vw, 5rem);
+.showcase-topbar__nav a {
+padding-inline: 0.65rem;
 }
 
-.showcase-course-composition__inner .qc-text-layout--split {
-max-width: none;
+.showcase-main--full-bleed {
+max-width: none;  padding: 0 !important;
 }
 
-.showcase-course-composition__inner .qc-media-frame img {
-min-height: 20rem;
+.showcase-composition-page-header {
+width: min(72rem, calc(100% - var(--qc-content-gutter) - var(--qc-content-gutter)));  margin-inline: auto;  padding-block: clamp(2.5rem, 6vw, 5rem);
 }

@@ -39,6 +39,8 @@ Status: In Review
 
 Use this opener when a course image provides useful context and the text needs a protected reading area. It supports `dark`, `light` and `brand` overlay styles. Brand overlays accept a hexadecimal brand colour and fall back to a controlled blue when no valid colour is supplied. It may include one optional action; Light text uses a white action button and Dark text uses a dark action button.
 
+`bleed="viewport"` is an optional page-level presentation mode for a course opener. It lets the image field reach the viewport edges while the existing text measure remains aligned to the governed course grid. The default `bleed="container"` preserves the component specimen and existing embedded use. `headingLevel` is optional and defaults to `4`, allowing a production course composition to retain its proper document outline without changing existing output.
+
 Choose `light` or `dark` text deliberately. Dark overlay normally pairs with Light text; Light overlay normally pairs with Dark text. A Brand colour overlay needs a final contrast review using the actual course image and content. The component does not analyse image brightness automatically.
 
 Use `standard` title emphasis for normal or descriptive course headings. Use `display` title emphasis for short, high-impact wording. The component owns responsive sizing and wrapping, so course creators should not choose arbitrary pixel sizes. Keep hero copy concise, but longer headings wrap naturally and increase the hero height when needed.

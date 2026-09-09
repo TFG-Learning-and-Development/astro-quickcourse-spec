@@ -1,5 +1,6 @@
 ---
 import type { HeroAction } from "./hero-types";
+import type { HeadingLevel } from "../layout-types";
 
 interface Props {
   previewId: string;
@@ -13,6 +14,8 @@ interface Props {
   overlayColor?: string;
   textTreatment?: "light" | "dark";
   titleEmphasis?: "standard" | "display";
+  bleed?: "container" | "viewport";
+  headingLevel?: HeadingLevel;
   action?: Pick<HeroAction, "href" | "label">;
 }
 
@@ -28,6 +31,8 @@ const {
   overlayColor,
   textTreatment = overlayStyle === "light" ? "dark" : "light",
   titleEmphasis = "standard",
+  bleed = "container",
+  headingLevel = 4,
   action,
 } = Astro.props;
 
@@ -35,10 +40,11 @@ const trimmedEyebrow = eyebrow?.trim();
 const trimmedDescription = description?.trim();
 const validHexColour = /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
 const safeOverlayColour = validHexColour.test(overlayColor ?? "") ? overlayColor : "#1d4ed8";
+const HeadingTag = `h${headingLevel}` as const;
 ---
 
 <section
-  class="showcase-hero showcase-hero--overlay"
+  class:list={["showcase-hero", "showcase-hero--overlay", bleed === "viewport" && "showcase-hero--bleed-viewport"]}
   data-hero-preview={previewId}
   data-overlay-style={overlayStyle}
   data-text-treatment={textTreatment}
@@ -50,7 +56,7 @@ const safeOverlayColour = validHexColour.test(overlayColor ?? "") ? overlayColor
   <div class="showcase-hero__overlay" aria-hidden="true"></div>
   <div class="showcase-hero__content">
     <p class="showcase-hero__eyebrow" data-hero-part="eyebrow" hidden={!trimmedEyebrow}>{trimmedEyebrow}</p>
-    <h4 id={headingId} class="showcase-hero__title" data-hero-part="title">{title}</h4>
+    <HeadingTag id={headingId} class="showcase-hero__title" data-hero-part="title">{title}</HeadingTag>
     <p class="showcase-hero__summary" data-hero-part="description" hidden={!trimmedDescription}>{trimmedDescription}</p>
     {action && (
       <div class="showcase-hero__actions" data-hero-actions>

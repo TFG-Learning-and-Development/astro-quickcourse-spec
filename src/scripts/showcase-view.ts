@@ -40,6 +40,8 @@ function setViewLink(link: HTMLAnchorElement, view: ShowcaseView) {
 
 function updateCategoryCounts(view: ShowcaseView) {
   document.querySelectorAll<HTMLElement>("[data-showcase-category-card]").forEach((card) => {
+    if (card.dataset.showcaseCategoryStatic === "true") return;
+
     const statuses = (card.dataset.showcaseCategoryStatuses ?? "").split(",").filter(Boolean);
     const count = statuses.filter((status) => isVisibleInView(status, view)).length;
     const label = card.querySelector<HTMLElement>("[data-showcase-category-count]");

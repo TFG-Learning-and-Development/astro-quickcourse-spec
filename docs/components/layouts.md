@@ -20,6 +20,22 @@ Recommended use: course starts, module starts and scenario starts.
 
 Misuse to avoid: repeated chapter separators inside a long course. Use `SectionDivider` for that.
 
+## Section Field
+
+Status: Draft foundation for Course Composition.
+
+Purpose: establish a full-viewport visual canvas with a governed inner content width before any instructional component is selected.
+
+Content model or props: `open`, `subtle`, `brand`, `dark` and `image` surfaces; `reading` or `wide` inner content widths; an optional named `media` slot; and a semantic wrapper element.
+
+Responsive behaviour: the field remains viewport-wide while the inner grid keeps a gutter and collapses naturally at narrow widths.
+
+Accessibility considerations: fields do not replace headings, reading order or component semantics. Image surfaces need meaningful alternative text when the media communicates context.
+
+Suitable use cases: grouped concepts, chapter transitions, key-message moments, image-led context and edge-to-edge media with aligned copy.
+
+Misuse to avoid: wrapping every ordinary paragraph in a coloured field or using image treatment when the image does not support the learning point.
+
 ## Readable Text Section
 
 Status: Draft

@@ -25,6 +25,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
     description: "Knowledge checks and evaluative moments with learner responses.",
   },
   {
+    label: "Course Composition",
+    slug: "course-composition",
+    href: "/showcase/course-composition",
+    description: "Page-level visual fields, spatial rhythm and full-width course composition.",
+  },
+  {
     label: "Patterns",
     slug: "patterns",
     href: "/showcase/patterns",

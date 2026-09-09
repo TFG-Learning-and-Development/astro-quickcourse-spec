@@ -17,6 +17,7 @@ The Showcase uses multiple category pages for review, governance and maintenance
 - Showcase-only page chrome, status badges and proposal cards live in `src/components/showcase/`.
 - Page-level Showcase navigation is handled by the top navbar using category routes. In production Quick Courses, this navigation pattern should target topics or anchors inside the same course page.
 - The Layouts category also provides same-page section anchors for direct review links.
+- Course Composition lives at `src/pages/showcase/course-composition.astro`. It demonstrates page-level visual fields, spatial rhythm and full-bleed behavior separately from individual component specimens and the Pattern recipe layer.
 - Showcase data lives in `src/data/` until a fuller content strategy is approved.
 - Pattern definitions live in `src/data/patterns.ts` as AI-readable composition guidance. They are independent of the component registry and are not a production rendering schema.
 - Component documentation lives in `docs/components/`.

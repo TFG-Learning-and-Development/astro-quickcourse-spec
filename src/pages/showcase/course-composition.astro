@@ -1,0 +1,144 @@
+---
+import ShowcaseLayout from "../../layouts/ShowcaseLayout.astro";
+import ShowcasePageHeader from "../../components/showcase/ShowcasePageHeader.astro";
+import ImageOverlayHero from "../../components/layout/heroes/ImageOverlayHero.astro";
+import SectionField from "../../components/layouts/content/SectionField.astro";
+import Accordion from "../../components/interactions/display/Accordion.astro";
+import ChoiceQuestion from "../../components/interactions/ChoiceQuestion.astro";
+import TypeText from "../../components/typography/TypeText.astro";
+
+const heroImage = "/images/showcase/hero-1.avif";
+const retailImage = "/images/showcase/flip-card-retail-reference.png";
+const displayImage = "/images/showcase/flip-card-display-wide.png";
+---
+
+<ShowcaseLayout
+  pageTitle="Course Composition | Astro Quick Course Showcase"
+  description="Page-level visual fields and spatial composition for Quick Courses."
+  activeCategory="course-composition"
+  contentWidth="full-bleed"
+>
+  <div class="showcase-composition-page-header">
+    <ShowcasePageHeader
+      eyebrow="Page-level visual system"
+      title="Course Composition"
+      description="A continuous visual stress test for the canvases, full-width fields and spatial rhythm that reusable Quick Course components can inhabit."
+    />
+  </div>
+
+  <article class="qc-course-composition" aria-label="Continuous course composition stress test">
+    <ImageOverlayHero
+      previewId="course-composition-hero"
+      headingId="course-composition-hero-heading"
+      headingLevel={2}
+      bleed="viewport"
+      eyebrow="Customer conversations"
+      title="Create confident customer conversations"
+      description="Use clear questions and useful next steps to make every customer interaction easier to navigate."
+      imageSrc={heroImage}
+      imageAlt="A participant reviewing course materials at a desk."
+      titleEmphasis="display"
+      action={{ href: "#composition-practice", label: "Begin the practice" }}
+    />
+
+    <SectionField surface="open" contentWidth="wide">
+      <div class="qc-composition-prose">
+        <TypeText as="p" role="eyebrow" weight="semibold">Start with the outcome</TypeText>
+        <TypeText as="h2" role="heading-xl" weight="bold">A clear conversation makes the next step visible.</TypeText>
+        <TypeText as="p" role="lead">Open space lets the explanation lead before a learner is asked to make a decision.</TypeText>
+        <TypeText as="p" role="body">Before explaining a process, find out what the customer needs to achieve. That one question gives the rest of the conversation a useful direction.</TypeText>
+      </div>
+    </SectionField>
+
+    <SectionField surface="subtle" contentWidth="wide">
+      <div class="qc-composition-split">
+        <div>
+          <TypeText as="p" role="eyebrow" weight="semibold">Find the signal</TypeText>
+          <TypeText as="h2" role="heading-lg" weight="bold">Listen for the outcome, not just the request.</TypeText>
+        </div>
+        <TypeText as="p" role="body">A soft field groups supporting guidance without creating another card. It gives a related idea enough room to feel like one learning moment.</TypeText>
+      </div>
+    </SectionField>
+
+    <SectionField surface="image" contentWidth="wide">
+      <img slot="media" class="qc-section-field__media" src={retailImage} alt="A retail associate reviewing a customer-facing display." loading="lazy" decoding="async" />
+      <div class="qc-composition-prose qc-composition-prose--image">
+        <TypeText as="p" role="eyebrow" tone="inverse" weight="semibold">Read the environment</TypeText>
+        <TypeText as="h2" role="heading-xl" tone="inverse" weight="bold">The setting can carry part of the learning story.</TypeText>
+        <TypeText as="p" role="lead" tone="inverse">Use imagery when it gives the learner real context, not as a small decorative attachment.</TypeText>
+      </div>
+    </SectionField>
+
+    <SectionField surface="open" contentWidth="reading" class="qc-section-field--media-moment">
+      <figure slot="media" class="qc-section-field__media">
+        <img src={displayImage} alt="A retail product display seen from a customer walkway." loading="lazy" decoding="async" />
+        <figcaption>Check the full customer view before changing individual details.</figcaption>
+      </figure>
+      <div class="qc-composition-prose">
+        <TypeText as="h2" role="heading-lg" weight="bold">See the whole picture first.</TypeText>
+        <TypeText as="p" role="body">The image can reach the page edge while the related explanation stays on the same readable content grid as the rest of the course.</TypeText>
+      </div>
+    </SectionField>
+
+    <SectionField surface="brand" contentWidth="reading">
+      <blockquote class="qc-composition-quote">
+        <p>The next step should be easier to see than the process behind it.</p>
+        <footer><cite>Illustrative course principle</cite></footer>
+      </blockquote>
+    </SectionField>
+
+    <SectionField id="composition-practice" surface="open" contentWidth="wide">
+      <div class="qc-composition-prose">
+        <TypeText as="p" role="eyebrow" weight="semibold">Practise the response</TypeText>
+        <TypeText as="h2" role="heading-lg" weight="bold">Contain interaction where the learner needs a boundary.</TypeText>
+        <TypeText as="p" role="body">The page remains open, while the accordion retains its own clear controls and response areas.</TypeText>
+      </div>
+      <Accordion
+        id="composition-conversation-steps"
+        presentation="minimal"
+        surface="neutral"
+        items={[
+          { id: "listen", title: "Listen for the outcome", content: "Let the customer describe what they need to happen before choosing a route forward." },
+          { id: "clarify", title: "Ask one focused question", content: "Use the missing detail to identify the most useful next step rather than listing every possible option." },
+          { id: "confirm", title: "Confirm the action", content: "Name the action, timing and owner so the customer knows what happens after the conversation." },
+        ]}
+      />
+    </SectionField>
+
+    <SectionField surface="open" contentWidth="reading">
+      <div class="qc-composition-prose">
+        <TypeText as="p" role="eyebrow" weight="semibold">Check your understanding</TypeText>
+        <TypeText as="h2" role="heading-lg" weight="bold">Choose the clearest next action.</TypeText>
+      </div>
+      <ChoiceQuestion
+        id="composition-next-action"
+        title="Responding to a customer need"
+        prompt="A customer explains the outcome they need. Which response keeps the conversation useful?"
+        selectionMode="single"
+        submissionMode="instant"
+        attemptMode="retry"
+        options={[
+          { id: "clarify", label: "Ask one focused question, then explain the next step that fits the outcome.", isCorrect: true, feedback: "This keeps the response specific and makes the next action easier to understand." },
+          { id: "list", label: "List every possible process before checking what matters to the customer.", isCorrect: false, feedback: "A long process list can hide the action the customer actually needs." },
+          { id: "promise", label: "Promise an immediate result before checking what the process allows.", isCorrect: false, feedback: "Useful guidance needs a realistic action and timing." },
+        ]}
+      />
+    </SectionField>
+
+    <SectionField surface="dark" contentWidth="wide">
+      <div class="qc-composition-prose qc-composition-prose--centered">
+        <TypeText as="p" role="eyebrow" tone="inverse" weight="semibold">Make the moment count</TypeText>
+        <TypeText as="h2" role="statement" align="center" tone="inverse" weight="bold">Good guidance creates a route forward.</TypeText>
+        <TypeText as="p" role="body" align="center" tone="inverse">Use a strong field for a genuine transition or key message, then return the learner to a quieter page rhythm.</TypeText>
+      </div>
+    </SectionField>
+
+    <SectionField surface="open" contentWidth="reading">
+      <div class="qc-composition-prose qc-composition-prose--closing">
+        <TypeText as="p" role="eyebrow" weight="semibold">Take it into the next conversation</TypeText>
+        <TypeText as="h2" role="heading-lg" weight="bold">Lead with the outcome. Confirm one next step.</TypeText>
+        <TypeText as="p" role="body">A deliberate close can be calm and direct. It does not need another card to feel complete.</TypeText>
+      </div>
+    </SectionField>
+  </article>
+</ShowcaseLayout>

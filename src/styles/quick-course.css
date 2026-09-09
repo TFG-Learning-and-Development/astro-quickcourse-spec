@@ -415,7 +415,7 @@ border-left: 4px solid #94a3b8;  padding-left: 1rem;  color: #374151;
 }
 
 .choice-question {
-display: grid;  gap: 1.25rem;  border: 1px solid #d1d5db;  border-radius: 0.65rem;  background: #ffffff;  padding: clamp(1rem, 2.5vw, 1.5rem);
+display: grid;  gap: 1.25rem;  border: 0;  border-radius: 0;  background: transparent;  padding: 0;
 }
 
 .choice-question__header,
@@ -3271,6 +3271,14 @@ border: 0;  border-radius: 0;  background: transparent;
 min-height: clamp(28rem, 52vw, 42rem);
 }
 
+.showcase-hero--bleed-viewport {
+width: 100vw;  margin-inline: calc(50% - 50vw);
+}
+
+.showcase-hero--bleed-viewport .showcase-hero__content {
+width: min(72rem, calc(100% - var(--qc-content-gutter) - var(--qc-content-gutter)));  max-width: none;  margin-inline: auto;  padding-inline: 0;
+}
+
 .showcase-hero-split,
 .showcase-hero-floating,
 .showcase-hero-objectives,
@@ -3355,5 +3363,123 @@ position: absolute;  z-index: -1;  inset-block: 0;  left: 50%;  width: 100vw;  t
 @media (max-width: 767px) {
 .qc-text-layout--bleed-viewport {
 padding-block: clamp(3rem, 14vw, 4.5rem);
+}
+}
+
+/* Page-level fields give a course one governed canvas before any content component is chosen. */
+.qc-section-field {
+--qc-section-field-background: transparent;  --qc-section-field-foreground: var(--qc-type-default);  position: relative;  isolation: isolate;  width: 100vw;  margin-inline: calc(50% - 50vw);  background: var(--qc-section-field-background);  color: var(--qc-section-field-foreground);
+}
+
+.qc-section-field--subtle {
+--qc-section-field-background: var(--showcase-ci-blush);  --qc-section-field-foreground: var(--qc-type-default);
+}
+
+.qc-section-field--brand {
+--qc-section-field-background: var(--showcase-ci-plum);  --qc-section-field-foreground: #ffffff;
+}
+
+.qc-section-field--dark {
+--qc-section-field-background: #111827;  --qc-section-field-foreground: #ffffff;
+}
+
+.qc-section-field__inner {
+position: relative;  z-index: 1;  display: grid;  gap: clamp(1.25rem, 2.5vw, 2rem);  width: min(72rem, calc(100% - var(--qc-content-gutter) - var(--qc-content-gutter)));  margin-inline: auto;  padding-block: var(--qc-section-space);
+}
+
+.qc-section-field__inner--reading {
+width: min(54rem, calc(100% - var(--qc-content-gutter) - var(--qc-content-gutter)));
+}
+
+.qc-section-field__media {
+display: block;  width: 100%;  margin: 0;
+}
+
+.qc-section-field__media img {
+display: block;  width: 100%;  object-fit: cover;
+}
+
+.qc-section-field--image {
+min-height: clamp(28rem, 54vw, 44rem);  display: grid;  align-items: stretch;  overflow: clip;  background: #111827;
+}
+
+.qc-section-field--image::after {
+position: absolute;  z-index: 0;  inset: 0;  background: linear-gradient(90deg, rgba(17, 24, 39, 0.88) 0%, rgba(17, 24, 39, 0.68) 44%, rgba(17, 24, 39, 0.22) 72%, rgba(17, 24, 39, 0.1) 100%);  content: "";
+}
+
+.qc-section-field--image > .qc-section-field__media {
+position: absolute;  inset: 0;  height: 100%;
+}
+
+.qc-section-field--image > .qc-section-field__media img {
+height: 100%;  object-position: center;  object-fit: cover;
+}
+
+.qc-section-field--image .qc-section-field__inner {
+align-content: center;
+}
+
+.qc-section-field--media-moment > .qc-section-field__media img {
+min-height: clamp(20rem, 45vw, 38rem);  max-height: 42rem;
+}
+
+.qc-section-field--media-moment > .qc-section-field__media figcaption {
+width: min(54rem, calc(100% - var(--qc-content-gutter) - var(--qc-content-gutter)));  margin: 0 auto;  color: var(--qc-type-muted);  padding-top: 0.75rem;
+}
+
+.qc-composition-prose {
+display: grid;  gap: 1rem;  max-width: var(--qc-type-measure-standard);
+}
+
+.qc-composition-prose--image {
+max-width: 42rem;
+}
+
+.qc-composition-prose--centered {
+justify-items: center;  margin-inline: auto;  text-align: center;
+}
+
+.qc-composition-prose--closing {
+padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.qc-composition-split {
+display: grid;  gap: clamp(1.5rem, 4vw, 4rem);  align-items: start;
+}
+
+.qc-composition-split > * {
+margin: 0;
+}
+
+.qc-composition-quote {
+margin: 0;  font-family: Georgia, "Times New Roman", Times, serif;  font-size: clamp(2rem, 4vw, 3.75rem);  font-weight: 700;  line-height: 1.12;  text-align: center;
+}
+
+.qc-composition-quote p,
+.qc-composition-quote footer {
+margin: 0;
+}
+
+.qc-composition-quote footer {
+margin-top: 1.5rem;  font-family: "Arial Nova", Arial, Helvetica, sans-serif;  font-size: 1rem;  font-weight: 600;  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+.qc-composition-split {
+grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.75fr);
+}
+}
+
+@media (max-width: 767px) {
+.showcase-hero--bleed-viewport {
+width: 100%;  min-height: clamp(30rem, 115vw, 38rem);  margin-inline: 0;
+}
+
+.qc-section-field {
+width: 100%;  margin-inline: 0;
+}
+
+.qc-section-field--image::after {
+background: linear-gradient(180deg, rgba(17, 24, 39, 0.78) 0%, rgba(17, 24, 39, 0.58) 58%, rgba(17, 24, 39, 0.76) 100%);
 }
 }

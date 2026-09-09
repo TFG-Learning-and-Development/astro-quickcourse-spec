@@ -4,13 +4,23 @@ import ShowcaseTopNav from "../components/layout/ShowcaseTopNav.astro";
 import CourseFooter from "../components/course/footer/CourseFooter.astro";
 import QuickCourseIcon from "../components/ui/QuickCourseIcon.astro";
 
+interface Props {
+  pageTitle?: string;
+  description?: string;
+  activeCategory?: string;
+  showCourseFooter?: boolean;
+  loadMaterialSymbols?: boolean;
+  contentWidth?: "contained" | "full-bleed";
+}
+
 const {
   pageTitle = "Astro Quick Course Showcase",
   description = "A neutral visual reference for reusable Astro course components.",
   activeCategory = "home",
   showCourseFooter = true,
   loadMaterialSymbols = true,
-} = Astro.props;
+  contentWidth = "contained",
+} = Astro.props as Props;
 
 ---
 
@@ -56,11 +66,9 @@ const {
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <div class="min-h-screen">
-      <div class="px-3 pt-3 md:px-6 md:pt-6">
-        <ShowcaseTopNav activeCategory={activeCategory} />
-      </div>
+      <ShowcaseTopNav activeCategory={activeCategory} />
 
-      <main id="main-content" class="showcase-main mx-auto max-w-7xl px-4 py-8">
+      <main id="main-content" class:list={["showcase-main", contentWidth === "full-bleed" ? "showcase-main--full-bleed" : "mx-auto max-w-7xl px-4 py-8"]}>
         <slot />
       </main>
 
