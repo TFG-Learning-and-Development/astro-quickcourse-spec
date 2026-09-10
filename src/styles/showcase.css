@@ -839,7 +839,7 @@ right: 1.5rem;    bottom: 1.5rem;
 }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1366px) {
 .showcase-topbar__nav {
 display: none;
 }
@@ -1487,4 +1487,77 @@ max-width: none;  padding: 0 !important;
 
 .showcase-composition-page-header {
 width: min(72rem, calc(100% - var(--qc-content-gutter) - var(--qc-content-gutter)));  margin-inline: auto;  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+.showcase-example__field {
+width: 100%;  margin-inline: 0;
+}
+
+.showcase-example__field > .qc-section-field__inner {
+width: 100%;  gap: var(--showcase-rhythm-content-block);  padding-block: 0;
+}
+
+/* Component-review pages use Course Composition fields as Showcase chrome. */
+:is(
+  body[data-showcase-category="layouts"],
+  body[data-showcase-category="display-interactions"],
+  body[data-showcase-category="assessment-interactions"],
+  body[data-showcase-category="multimedia"]
+) .showcase-example-stack {
+gap: 0;
+}
+
+:is(
+  body[data-showcase-category="layouts"],
+  body[data-showcase-category="display-interactions"],
+  body[data-showcase-category="assessment-interactions"],
+  body[data-showcase-category="multimedia"]
+) .showcase-example {
+display: block;  border: 0;  padding: 0;
+}
+
+:is(
+  body[data-showcase-category="layouts"],
+  body[data-showcase-category="display-interactions"],
+  body[data-showcase-category="assessment-interactions"],
+  body[data-showcase-category="multimedia"]
+) .showcase-example__field {
+width: 100vw;  margin-inline: calc(50% - 50vw);
+}
+
+:is(
+  body[data-showcase-category="layouts"],
+  body[data-showcase-category="display-interactions"],
+  body[data-showcase-category="assessment-interactions"],
+  body[data-showcase-category="multimedia"]
+) .showcase-example__field > .qc-section-field__inner {
+gap: clamp(1.5rem, 3vw, 2.25rem);  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+:is(
+  body[data-showcase-category="layouts"],
+  body[data-showcase-category="display-interactions"],
+  body[data-showcase-category="assessment-interactions"],
+  body[data-showcase-category="multimedia"]
+) .showcase-example-stack > .showcase-example:nth-of-type(even) .showcase-example__field--auto {
+--qc-section-field-background: var(--showcase-ci-blush);
+}
+
+.choice-question-showcase-stack {
+gap: 0;
+}
+
+.choice-question-showcase-specimen > .qc-section-field__inner {
+gap: 1rem;  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+@media (max-width: 767px) {
+:is(
+  body[data-showcase-category="layouts"],
+  body[data-showcase-category="display-interactions"],
+  body[data-showcase-category="assessment-interactions"],
+  body[data-showcase-category="multimedia"]
+) .showcase-example__field {
+width: 100%;  margin-inline: 0;
+}
 }

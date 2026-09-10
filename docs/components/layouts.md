@@ -4,6 +4,8 @@ Reusable layouts currently sit in Draft or Concept while the project team review
 
 Eyebrows are optional. Use them only when the label adds context that the heading does not already provide, such as `Module 2`, `Scenario`, `Section 3`, `Product knowledge` or a meaningful content category. Most components and examples should work well without an eyebrow.
 
+Do not repeat an eyebrow-heading-body structure by default across a page. Sections may begin directly with a heading, statement, quote, metric or image when that creates a clearer hierarchy.
+
 Showcase page labels and counts should stay restrained. Do not add page-level component counts, visible `Section index` headings or example-count eyebrows to make a page feel complete. Category pages may keep quiet anchor navigation, and major groups should be separated through spacing, dividers and subtle neutral surface changes.
 
 Hero examples use the shared Showcase-only `Options` disclosure for optional preview controls. Image Overlay Hero adds controlled overlay, text-treatment, title-emphasis and temporary content-testing options. Minimal Hero uses controlled alignment, heading scale, density and surface options. These controls are review tooling and are not part of reusable production layout components.

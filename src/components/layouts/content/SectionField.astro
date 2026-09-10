@@ -4,17 +4,18 @@ export type SectionFieldWidth = "reading" | "wide";
 
 interface Props {
   id?: string;
+  ariaLabelledby?: string;
   surface?: SectionFieldSurface;
   contentWidth?: SectionFieldWidth;
   as?: "section" | "article" | "aside" | "div";
   class?: string;
 }
 
-const { id, surface = "open", contentWidth = "wide", as: element = "section", class: className } = Astro.props as Props;
+const { id, ariaLabelledby, surface = "open", contentWidth = "wide", as: element = "section", class: className } = Astro.props as Props;
 const Tag = element;
 ---
 
-<Tag id={id} class:list={["qc-section-field", `qc-section-field--${surface}`, className]}>
+<Tag id={id} aria-labelledby={ariaLabelledby} class:list={["qc-section-field", `qc-section-field--${surface}`, className]}>
   <slot name="media" />
   <div class:list={["qc-section-field__inner", `qc-section-field__inner--${contentWidth}`]}>
     <slot />

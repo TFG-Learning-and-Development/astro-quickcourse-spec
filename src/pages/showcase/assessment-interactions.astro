@@ -5,6 +5,7 @@ import ShowcaseExample from "../../components/showcase/ShowcaseExample.astro";
 import ShowcaseEmptyState from "../../components/showcase/ShowcaseEmptyState.astro";
 import ProposalCard from "../../components/showcase/ProposalCard.astro";
 import ChoiceQuestion from "../../components/interactions/ChoiceQuestion.astro";
+import SectionField from "../../components/layouts/content/SectionField.astro";
 import { getProposalItems, getShowcaseItem } from "../../data/showcase-registry";
 
 const multipleChoiceItem = getShowcaseItem("multiple-choice-feedback");
@@ -27,9 +28,10 @@ const proposalItems = getProposalItems("assessment-interactions");
       id="multiple-choice-feedback"
       title="Multiple Choice"
       purpose="One reusable formative question system for native single- and multiple-response choices, prompt media and image answers."
+      field="open"
     >
       <div class="choice-question-showcase-stack">
-        <section class="choice-question-showcase-specimen" aria-labelledby="instant-feedback-specimen">
+        <SectionField as="section" surface="open" class="choice-question-showcase-specimen" ariaLabelledby="instant-feedback-specimen">
           <div class="choice-question-showcase-specimen__header">
             <h4 id="instant-feedback-specimen">Single selection - instant feedback</h4>
             <p>Feedback changes with each selection. Learners can continue exploring every option.</p>
@@ -47,9 +49,9 @@ const proposalItems = getProposalItems("assessment-interactions");
               { id: "no-feedback", label: "Show all possible responses with no feedback so the learner can decide privately.", isCorrect: false, feedback: "Choice is useful, but feedback is what turns the selection into a learning moment." },
             ]}
           />
-        </section>
+        </SectionField>
 
-        <section class="choice-question-showcase-specimen" aria-labelledby="check-answer-specimen">
+        <SectionField as="section" surface="subtle" class="choice-question-showcase-specimen" ariaLabelledby="check-answer-specimen">
           <div class="choice-question-showcase-specimen__header">
             <h4 id="check-answer-specimen">Single selection - Check answer</h4>
             <p>Learners can change their answer before evaluation. A correct response completes this specimen.</p>
@@ -68,9 +70,9 @@ const proposalItems = getProposalItems("assessment-interactions");
               { id: "hand-off", label: "Ask the customer to contact another team without checking the account.", isCorrect: false },
             ]}
           />
-        </section>
+        </SectionField>
 
-        <section class="choice-question-showcase-specimen" aria-labelledby="multiple-selection-specimen">
+        <SectionField as="section" surface="open" class="choice-question-showcase-specimen" ariaLabelledby="multiple-selection-specimen">
           <div class="choice-question-showcase-specimen__header">
             <h4 id="multiple-selection-specimen">Multiple selection</h4>
             <p>This Check answer example uses exact-match feedback and allows a retry after an incorrect response.</p>
@@ -92,9 +94,9 @@ const proposalItems = getProposalItems("assessment-interactions");
               { id: "check-recipient", label: "Check the recipient before sending customer information.", isCorrect: true },
             ]}
           />
-        </section>
+        </SectionField>
 
-        <section class="choice-question-showcase-specimen" aria-labelledby="question-image-specimen">
+        <SectionField as="section" surface="subtle" class="choice-question-showcase-specimen" ariaLabelledby="question-image-specimen">
           <div class="choice-question-showcase-specimen__header">
             <h4 id="question-image-specimen">Question with image</h4>
             <p>Prompt media can provide visual context while choices remain text-based.</p>
@@ -120,9 +122,9 @@ const proposalItems = getProposalItems("assessment-interactions");
               { id: "label-last", label: "Ignore the wider display and inspect only the smallest label first.", isCorrect: false },
             ]}
           />
-        </section>
+        </SectionField>
 
-        <section class="choice-question-showcase-specimen" aria-labelledby="image-answers-specimen">
+        <SectionField as="section" surface="open" class="choice-question-showcase-specimen" ariaLabelledby="image-answers-specimen">
           <div class="choice-question-showcase-specimen__header">
             <h4 id="image-answers-specimen">Image answer choices</h4>
             <p>Use visual choices when the learner needs to identify the most useful view.</p>
@@ -158,7 +160,7 @@ const proposalItems = getProposalItems("assessment-interactions");
               },
             ]}
           />
-        </section>
+        </SectionField>
       </div>
     </ShowcaseExample>}
     {proposalItems.map((item) => <ProposalCard item={item} />)}

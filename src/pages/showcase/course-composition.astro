@@ -43,7 +43,6 @@ const displayImage = "/images/showcase/flip-card-display-wide.png";
 
     <SectionField surface="open" contentWidth="wide">
       <div class="qc-composition-prose">
-        <TypeText as="p" role="eyebrow" weight="semibold">Start with the outcome</TypeText>
         <TypeText as="h2" role="heading-xl" weight="bold">A clear conversation makes the next step visible.</TypeText>
         <TypeText as="p" role="lead">Open space lets the explanation lead before a learner is asked to make a decision.</TypeText>
         <TypeText as="p" role="body">Before explaining a process, find out what the customer needs to achieve. That one question gives the rest of the conversation a useful direction.</TypeText>
@@ -53,7 +52,6 @@ const displayImage = "/images/showcase/flip-card-display-wide.png";
     <SectionField surface="subtle" contentWidth="wide">
       <div class="qc-composition-split">
         <div>
-          <TypeText as="p" role="eyebrow" weight="semibold">Find the signal</TypeText>
           <TypeText as="h2" role="heading-lg" weight="bold">Listen for the outcome, not just the request.</TypeText>
         </div>
         <TypeText as="p" role="body">A soft field groups supporting guidance without creating another card. It gives a related idea enough room to feel like one learning moment.</TypeText>
@@ -63,9 +61,15 @@ const displayImage = "/images/showcase/flip-card-display-wide.png";
     <SectionField surface="image" contentWidth="wide">
       <img slot="media" class="qc-section-field__media" src={retailImage} alt="A retail associate reviewing a customer-facing display." loading="lazy" decoding="async" />
       <div class="qc-composition-prose qc-composition-prose--image">
-        <TypeText as="p" role="eyebrow" tone="inverse" weight="semibold">Read the environment</TypeText>
         <TypeText as="h2" role="heading-xl" tone="inverse" weight="bold">The setting can carry part of the learning story.</TypeText>
         <TypeText as="p" role="lead" tone="inverse">Use imagery when it gives the learner real context, not as a small decorative attachment.</TypeText>
+      </div>
+    </SectionField>
+
+    <SectionField surface="open" contentWidth="reading">
+      <div class="qc-composition-prose">
+        <TypeText as="h2" role="heading-lg" weight="bold">Change perspective before inspecting the detail.</TypeText>
+        <TypeText as="p" role="body">A quiet editorial interval separates the environmental image from the next visual inspection. The learner gets a clear transition instead of one dominant photograph flowing straight into another.</TypeText>
       </div>
     </SectionField>
 
@@ -89,8 +93,7 @@ const displayImage = "/images/showcase/flip-card-display-wide.png";
 
     <SectionField id="composition-practice" surface="open" contentWidth="wide">
       <div class="qc-composition-prose">
-        <TypeText as="p" role="eyebrow" weight="semibold">Practise the response</TypeText>
-        <TypeText as="h2" role="heading-lg" weight="bold">Contain interaction where the learner needs a boundary.</TypeText>
+        <TypeText as="h2" role="heading-lg" weight="bold">Practise the response within a clear boundary.</TypeText>
         <TypeText as="p" role="body">The page remains open, while the accordion retains its own clear controls and response areas.</TypeText>
       </div>
       <Accordion
@@ -107,7 +110,6 @@ const displayImage = "/images/showcase/flip-card-display-wide.png";
 
     <SectionField surface="open" contentWidth="reading">
       <div class="qc-composition-prose">
-        <TypeText as="p" role="eyebrow" weight="semibold">Check your understanding</TypeText>
         <TypeText as="h2" role="heading-lg" weight="bold">Choose the clearest next action.</TypeText>
       </div>
       <ChoiceQuestion
@@ -127,7 +129,6 @@ const displayImage = "/images/showcase/flip-card-display-wide.png";
 
     <SectionField surface="dark" contentWidth="wide">
       <div class="qc-composition-prose qc-composition-prose--centered">
-        <TypeText as="p" role="eyebrow" tone="inverse" weight="semibold">Make the moment count</TypeText>
         <TypeText as="h2" role="statement" align="center" tone="inverse" weight="bold">Good guidance creates a route forward.</TypeText>
         <TypeText as="p" role="body" align="center" tone="inverse">Use a strong field for a genuine transition or key message, then return the learner to a quieter page rhythm.</TypeText>
       </div>
@@ -135,7 +136,6 @@ const displayImage = "/images/showcase/flip-card-display-wide.png";
 
     <SectionField surface="open" contentWidth="reading">
       <div class="qc-composition-prose qc-composition-prose--closing">
-        <TypeText as="p" role="eyebrow" weight="semibold">Take it into the next conversation</TypeText>
         <TypeText as="h2" role="heading-lg" weight="bold">Lead with the outcome. Confirm one next step.</TypeText>
         <TypeText as="p" role="body">A deliberate close can be calm and direct. It does not need another card to feel complete.</TypeText>
       </div>

@@ -1,5 +1,6 @@
 ---
 import StatusBadge from "./StatusBadge.astro";
+import SectionField from "../layouts/content/SectionField.astro";
 import { getShowcaseItem } from "../../data/showcase-registry";
 import type { ShowcaseStatus } from "../../data/showcase-registry";
 
@@ -8,12 +9,14 @@ interface Props {
   title: string;
   purpose: string;
   status?: ShowcaseStatus;
+  field?: "auto" | "open" | "subtle";
 }
 
-const { id, title, purpose, status } = Astro.props;
+const { id, title, purpose, status, field = "auto" } = Astro.props;
 const registryItem = getShowcaseItem(id);
 const displayStatus: ShowcaseStatus = registryItem ? registryItem.status : status ?? "in-review";
 const replacement = registryItem?.replacementId ? getShowcaseItem(registryItem.replacementId) : undefined;
+const fieldSurface = field === "subtle" ? "subtle" : "open";
 ---
 
 <article
@@ -23,6 +26,7 @@ const replacement = registryItem?.replacementId ? getShowcaseItem(registryItem.r
   data-showcase-status={displayStatus}
   aria-labelledby={`${id}-heading`}
 >
+  <SectionField as="div" surface={fieldSurface} class={`showcase-example__field showcase-example__field--${field}`}>
       <div class="showcase-example__header">
         <div>
           <h3 id={`${id}-heading`} class="showcase-catalogue-section__item-heading">
@@ -46,4 +50,5 @@ const replacement = registryItem?.replacementId ? getShowcaseItem(registryItem.r
       <div class="showcase-example__preview" data-showcase-specimen>
         <slot />
       </div>
-    </article>
+  </SectionField>
+</article>
