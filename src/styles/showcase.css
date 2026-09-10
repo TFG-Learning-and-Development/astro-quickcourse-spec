@@ -1494,7 +1494,7 @@ width: 100%;  margin-inline: 0;
 }
 
 .showcase-example__field > .qc-section-field__inner {
-width: 100%;  gap: var(--showcase-rhythm-content-block);  padding-block: 0;
+gap: var(--showcase-rhythm-content-block);  padding-block: 0;
 }
 
 /* Component-review pages use Course Composition fields as Showcase chrome. */
@@ -1549,15 +1549,4 @@ gap: 0;
 
 .choice-question-showcase-specimen > .qc-section-field__inner {
 gap: 1rem;  padding-block: clamp(3rem, 6vw, 5rem);
-}
-
-@media (max-width: 767px) {
-:is(
-  body[data-showcase-category="layouts"],
-  body[data-showcase-category="display-interactions"],
-  body[data-showcase-category="assessment-interactions"],
-  body[data-showcase-category="multimedia"]
-) .showcase-example__field {
-width: 100%;  margin-inline: 0;
-}
 }
