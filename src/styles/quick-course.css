@@ -3372,7 +3372,7 @@ padding-block: clamp(3rem, 14vw, 4.5rem);
 }
 
 .qc-section-field--subtle {
---qc-section-field-background: var(--showcase-ci-blush);  --qc-section-field-foreground: var(--qc-type-default);
+--qc-section-field-background: var(--qc-section-field-subtle-background);  --qc-section-field-foreground: var(--qc-type-default);
 }
 
 .qc-section-field--brand {

@@ -1540,7 +1540,7 @@ gap: clamp(1.5rem, 3vw, 2.25rem);  padding-block: clamp(3rem, 6vw, 5rem);
   body[data-showcase-category="assessment-interactions"],
   body[data-showcase-category="multimedia"]
 ) .showcase-example-stack > .showcase-example:nth-of-type(even) .showcase-example__field--auto {
---qc-section-field-background: var(--showcase-ci-blush);
+--qc-section-field-background: var(--qc-section-field-subtle-background);
 }
 
 .choice-question-showcase-stack {
