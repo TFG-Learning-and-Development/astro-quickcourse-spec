@@ -1,0 +1,152 @@
+---
+import QuickCourseIcon from "../ui/QuickCourseIcon.astro";
+import type { MatchingInteractionProps } from "./matching-interaction-types";
+
+const {
+  id,
+  eyebrow,
+  title,
+  prompt,
+  instruction,
+  targetLabel,
+  matchingMode = "one-to-one",
+  sources,
+  targets,
+} = Astro.props as MatchingInteractionProps;
+
+if (sources.length < 2 || targets.length < 2) {
+  throw new Error(`MatchingInteraction "${id}" needs at least two sources and two targets.`);
+}
+if (new Set(sources.map((source) => source.id)).size !== sources.length) {
+  throw new Error(`MatchingInteraction "${id}" needs unique stable source ids.`);
+}
+if (new Set(targets.map((target) => target.id)).size !== targets.length) {
+  throw new Error(`MatchingInteraction "${id}" needs unique stable target ids.`);
+}
+const targetIds = new Set(targets.map((target) => target.id));
+if (sources.some((source) => !targetIds.has(source.correctTargetId))) {
+  throw new Error(`MatchingInteraction "${id}" has a source with an unknown correctTargetId.`);
+}
+const usedCorrectTargetIds = new Set(sources.map((source) => source.correctTargetId));
+if (matchingMode === "one-to-one") {
+  if (sources.length !== targets.length || usedCorrectTargetIds.size !== targets.length) {
+    throw new Error(`MatchingInteraction "${id}" needs one unique target for every source in one-to-one mode.`);
+  }
+} else if (usedCorrectTargetIds.size !== targets.length) {
+  throw new Error(`MatchingInteraction "${id}" needs every category to be used by at least one source.`);
+}
+
+const selectLabel = targetLabel ?? (matchingMode === "categorise" ? "category" : "match");
+---
+
+<article id={id} class="matching-interaction" data-matching-interaction data-matching-mode={matchingMode} aria-labelledby={`${id}-title`}>
+  <header class="matching-interaction__header">
+    {eyebrow && <p class="matching-interaction__eyebrow">{eyebrow}</p>}
+    <h4 id={`${id}-title`}>{title}</h4>
+    <p>{prompt}</p>
+    {instruction && <p class="matching-interaction__instruction">{instruction}</p>}
+  </header>
+
+  <ol class="matching-interaction__list">
+    {sources.map((source, index) => (
+      <li class="matching-interaction__row" data-matching-row data-correct-target-id={source.correctTargetId}>
+        <div class="matching-interaction__item-copy">
+          <label class="matching-interaction__item-label" for={`${id}-source-${index}`}>{source.label}</label>
+          {source.supportingText && <p id={`${id}-support-${index}`} class="matching-interaction__item-supporting">{source.supportingText}</p>}
+        </div>
+        <div class="matching-interaction__answer">
+          <select
+            id={`${id}-source-${index}`}
+            class="select select-lg matching-interaction__select"
+            data-matching-select
+            aria-describedby={source.supportingText ? `${id}-support-${index} ${id}-status-${index}` : `${id}-status-${index}`}
+            required
+          >
+            <option value="" disabled selected>Select {selectLabel}</option>
+            {targets.map((target) => <option value={target.id} title={target.supportingText}>{target.label}</option>)}
+          </select>
+          <span class="matching-interaction__state" aria-hidden="true">
+            <QuickCourseIcon name="success" context="button" class="matching-interaction__state-icon matching-interaction__state-icon--correct" />
+            <QuickCourseIcon name="error" context="button" class="matching-interaction__state-icon matching-interaction__state-icon--incorrect" />
+          </span>
+        </div>
+        <span id={`${id}-status-${index}`} class="sr-only" data-matching-status>Not answered</span>
+      </li>
+    ))}
+  </ol>
+  <p class="sr-only" data-matching-live aria-live="polite" aria-atomic="true"></p>
+</article>
+
+<script>
+  function initialiseMatchingInteraction(root: HTMLElement) {
+    if (root.dataset.matchingInteractionInitialised === "true") return;
+    const rows = Array.from(root.querySelectorAll<HTMLElement>("[data-matching-row]"));
+    const live = root.querySelector<HTMLElement>("[data-matching-live]");
+    if (!rows.length || !live) return;
+    root.dataset.matchingInteractionInitialised = "true";
+    const oneToOne = root.dataset.matchingMode === "one-to-one";
+
+    rows.forEach((row, index) => {
+      const select = row.querySelector<HTMLSelectElement>("[data-matching-select]");
+      const status = row.querySelector<HTMLElement>("[data-matching-status]");
+      const label = row.querySelector<HTMLLabelElement>(".matching-interaction__item-label");
+      if (!select || !status || !label) return;
+      let keyboardSelection = false;
+      select.addEventListener("keydown", () => { keyboardSelection = true; });
+      select.addEventListener("pointerdown", () => { keyboardSelection = false; });
+
+      const evaluateSelection = () => {
+        if (!select.value) {
+          row.removeAttribute("data-matching-state");
+          select.removeAttribute("aria-invalid");
+          status.textContent = "Not answered";
+          return;
+        }
+        const correct = select.value === row.dataset.correctTargetId;
+        row.dataset.matchingState = correct ? "correct" : "incorrect";
+        select.setAttribute("aria-invalid", correct ? "false" : "true");
+        status.textContent = correct ? "Correct" : "Incorrect. Try another option.";
+        live.textContent = `${label.textContent?.trim()}: ${status.textContent}`;
+
+        if (correct) {
+          const hadFocus = document.activeElement === select;
+          select.disabled = true;
+          if (oneToOne) {
+            rows.forEach((otherRow) => {
+              if (otherRow === row) return;
+              const otherSelect = otherRow.querySelector<HTMLSelectElement>("[data-matching-select]");
+              const option = Array.from(otherSelect?.options ?? []).find((candidate) => candidate.value === select.value);
+              if (option) option.disabled = true;
+              if (otherSelect?.value === select.value) {
+                otherSelect.value = "";
+                otherSelect.removeAttribute("aria-invalid");
+                otherRow.removeAttribute("data-matching-state");
+                const otherStatus = otherRow.querySelector<HTMLElement>("[data-matching-status]");
+                if (otherStatus) otherStatus.textContent = "Not answered";
+                const otherLabel = otherRow.querySelector<HTMLLabelElement>(".matching-interaction__item-label");
+                live.textContent += ` The choice for ${otherLabel?.textContent?.trim() ?? "another item"} was cleared.`;
+              }
+            });
+          }
+          if (hadFocus && keyboardSelection) {
+            const followingRows = [...rows.slice(index + 1), ...rows.slice(0, index)];
+            followingRows.find((nextRow) => !nextRow.querySelector<HTMLSelectElement>("[data-matching-select]")?.disabled)
+              ?.querySelector<HTMLSelectElement>("[data-matching-select]")?.focus();
+          }
+        }
+      };
+      select.addEventListener("input", evaluateSelection);
+      select.addEventListener("change", evaluateSelection);
+    });
+  }
+
+  function initialiseAllMatchingInteractions() {
+    document.querySelectorAll<HTMLElement>("[data-matching-interaction]").forEach(initialiseMatchingInteraction);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initialiseAllMatchingInteractions, { once: true });
+  } else {
+    initialiseAllMatchingInteractions();
+  }
+  document.addEventListener("astro:page-load", initialiseAllMatchingInteractions);
+</script>

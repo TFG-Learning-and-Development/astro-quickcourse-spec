@@ -106,6 +106,7 @@ export const showcaseRegistry: ShowcaseRegistryItem[] = [
   { id: "timeline", name: "Timeline", category: "display-interactions", status: "draft", version: "0.1.0" },
   { id: "expandable-image", name: "Expandable Image", category: "display-interactions", status: "concept", version: "0.1.0" },
   { id: "multiple-choice-feedback", name: "Multiple-choice feedback", category: "assessment-interactions", status: "approved", version: "0.1.0", production: { entries: ["src/components/interactions/ChoiceQuestion.astro"] } },
+  { id: "matching-interaction", name: "Matching interaction", category: "assessment-interactions", status: "in-review", version: "0.1.0" },
   {
     id: "drag-and-drop",
     name: "Drag and Drop",

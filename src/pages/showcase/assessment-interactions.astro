@@ -5,10 +5,12 @@ import ShowcaseExample from "../../components/showcase/ShowcaseExample.astro";
 import ShowcaseEmptyState from "../../components/showcase/ShowcaseEmptyState.astro";
 import ProposalCard from "../../components/showcase/ProposalCard.astro";
 import ChoiceQuestion from "../../components/interactions/ChoiceQuestion.astro";
+import MatchingInteraction from "../../components/interactions/MatchingInteraction.astro";
 import SectionField from "../../components/layouts/content/SectionField.astro";
 import { getProposalItems, getShowcaseItem } from "../../data/showcase-registry";
 
 const multipleChoiceItem = getShowcaseItem("multiple-choice-feedback");
+const matchingInteractionItem = getShowcaseItem("matching-interaction");
 const proposalItems = getProposalItems("assessment-interactions");
 ---
 
@@ -158,6 +160,64 @@ const proposalItems = getProposalItems("assessment-interactions");
                 isCorrect: false,
                 image: { src: "/images/showcase/flip-card-retail-reference.png", alt: "A retail associate reviewing a store display.", width: 1024, height: 1536 },
               },
+            ]}
+          />
+        </SectionField>
+      </div>
+    </ShowcaseExample>}
+    {matchingInteractionItem && <ShowcaseExample
+      id="matching-interaction"
+      title="Matching Interaction"
+      purpose="Choose a match or category in each row and get immediate feedback."
+      field="open"
+    >
+      <div class="matching-interaction-showcase-stack">
+        <SectionField as="section" surface="open" class="matching-interaction-showcase-specimen" ariaLabelledby="matching-one-to-one-specimen">
+          <div class="matching-interaction-showcase-specimen__header">
+            <h4 id="matching-one-to-one-specimen">Instant feedback — one-to-one matching</h4>
+            <p>Choose a team for each customer need. Correct answers lock; incorrect answers can be changed straight away.</p>
+          </div>
+          <MatchingInteraction
+            id="customer-needs-matching"
+            title="Match each customer need to the right team"
+            prompt="Choose the team best placed to resolve each customer need."
+            targetLabel="team"
+            matchingMode="one-to-one"
+            sources={[
+              { id: "refund", label: "A refund has not reflected.", supportingText: "The customer has checked their account and wants to know when the payment will appear.", correctTargetId: "payments" },
+              { id: "password", label: "A customer cannot reset a password.", correctTargetId: "access" },
+              { id: "delivery", label: "A delivery has not arrived.", correctTargetId: "fulfilment" },
+              { id: "coverage", label: "A customer asks whether an address is covered.", correctTargetId: "availability" },
+            ]}
+            targets={[
+              { id: "payments", label: "Payments support" },
+              { id: "access", label: "Account access support" },
+              { id: "fulfilment", label: "Fulfilment support" },
+              { id: "availability", label: "Service availability support" },
+            ]}
+          />
+        </SectionField>
+
+        <SectionField as="section" surface="subtle" class="matching-interaction-showcase-specimen" ariaLabelledby="matching-categorise-specimen">
+          <div class="matching-interaction-showcase-specimen__header">
+            <h4 id="matching-categorise-specimen">Instant feedback — categorisation</h4>
+            <p>Choose a practice for each behaviour. A category can be used more than once.</p>
+          </div>
+          <MatchingInteraction
+            id="information-handling-categories"
+            title="Categorise information-handling behaviours"
+            prompt="Choose the practice demonstrated by each behaviour."
+            targetLabel="practice"
+            matchingMode="categorise"
+            sources={[
+              { id: "lock-screen", label: "Lock the screen before stepping away.", correctTargetId: "protect" },
+              { id: "check-recipient", label: "Check the recipient before sending customer information.", correctTargetId: "verify" },
+              { id: "clear-desk", label: "Clear customer notes from the desk when finished.", correctTargetId: "protect" },
+              { id: "confirm-details", label: "Confirm identifying details before discussing an account.", correctTargetId: "verify" },
+            ]}
+            targets={[
+              { id: "protect", label: "Protect information" },
+              { id: "verify", label: "Verify before sharing" },
             ]}
           />
         </SectionField>
