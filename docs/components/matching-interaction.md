@@ -1,6 +1,6 @@
 # Matching Interaction
 
-Status: In Review
+Status: Approved
 
 ## Purpose
 
@@ -46,4 +46,4 @@ At widths of 768px and above, each row uses a two-column grid for source and ans
 
 ## Scope
 
-The earlier source-then-target button flow, Check Answer, single-attempt mode, reset, custom feedback messages, and `lockOnCorrect` are removed from this Draft v1 API. This keeps the learner interaction focused on immediate, retryable formative feedback.
+The earlier source-then-target button flow, Check Answer, single-attempt mode, reset, custom feedback messages, and `lockOnCorrect` are removed from this v1 API. This keeps the learner interaction focused on immediate, retryable formative feedback.
